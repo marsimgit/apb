@@ -1,3 +1,3 @@
 <?php 
-	$apb_release='0.2';
+	$apb_release='2.0';
 ?>

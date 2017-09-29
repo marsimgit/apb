@@ -25,67 +25,43 @@
 	$delete_flag = $_POST["delete_flag"];
 ?>
 
-<?php if ($action=="") {
-	echo('<head>');
-	echo('<title>Another Page Builder');
-	echo('</title>');
-	echo ("<link href='css/grid3.css' media='screen' rel='stylesheet' type='text/css' />");
-	echo ("<link href='css/marsim.css' media='screen' rel='stylesheet' type='text/css' />");
-	echo('</head>');
+<head>
+	<title>Another Page Builder</title>
+</head>
 
-	echo('<html>');
-	
-	
-	
-	echo ("<div class='container container_3'>");
-		echo ("<div class='grid_3' style='color: #D0D0D0; font-size: smaller; background-color: #174E68'>");
-			echo ("Another Page Builder - $apb_release");
-		echo ("</div>");
-	
-		echo ("<div class='grid_3'>");
-			echo ("<img src='images/apb_logo.png' width='8%' height='8%' border='0' alt='logo'>");
-		echo ("</div>");
+<html>
+
+<div>
+ Another Page Builder - 2.0
+</div>
+
+
+<form method=POST ACTION=apb.php>
 		
-		echo ("<div id='navigation' class='grid_3' style='background-color: #174E68'>");
-		echo ("&nbsp;");	
-		echo ("</div>");
-	
-	echo('<form method=POST ACTION=apb.php>');
-		
-		echo ("<div class='grid_1'>");
-			echo("Select Page:");
+Select Page:
 			WebSelectList("SELECT page_id FROM apb_pages ORDER BY page_id","page_id");
-		echo ("</div>");
-			
-		echo ("<div class='grid_2'>");
-			echo('<input type=radio name=action value=apb_add>Add a new page (<input type=CHECKBOX NAME=base_flag> based on the selected page).<br>');
-			echo('<input type=radio name=action value=apb_edit>Edit the selected page.<br>');
-			echo('<input type=radio name=action value=apb_delete>Delete the selected page.<br>');
-			echo('<input type=radio name=action value=apb_view>View the selected page with these parameters: <input type=input SIZE=50 NAME=parameters>');
-			echo('<input type=submit value="Process">');
-		echo ("</div>");
-			
-	echo('</form>');
 
-	echo ("<div class='grid_3' style='color: #D0D0D0; font-size: smaller; background-color: #174E68'>");
-		echo ("&nbsp;");
-	echo ("</div>");
-	
-		echo ("<div class='grid_2'>");	
-			echo('<H2>Page Index:</H2>');				
+<input type=radio name=action value=apb_add>Add a new page (<input type=CHECKBOX NAME=base_flag> based on the selected page).<br>
+<input type=radio name=action value=apb_edit>Edit the selected page.<br>
+<input type=radio name=action value=apb_delete>Delete the selected page.<br>
+<input type=radio name=action value=apb_view>View the selected page with these parameters: <input type=input SIZE=50 NAME=parameters>
+<input type=submit value="Process">
+
+</form>
+
+<H2>Page Index:</H2>
 			WebTable("SELECT page_id as 'PAGE ID',page_description as 'PAGE DESCRIPTION',LENGTH(page_body) as 'PAGE SIZE' FROM apb_pages");				
-		echo("</div>");
 
-		echo ("<div class='grid_3' style='color: #D0D0D0; font-size: smaller; background-color: #174E68'>");
-		echo ("&nbsp;");
-		echo ("</div>");
-		
-		
-	echo ("</div>");		
+</body>
+</html>
+
+
+
+
+<?php if ($action=="") {
+
 
 	
-	echo("</body>");
-	echo("</html>");
 }
 else {
   switch ($action)

@@ -1,3 +1,7 @@
 <?php
-	echo phpversion();
+
+$arr = array('PHP version' => phpversion());
+
+echo json_encode($arr);
+
 ?>
