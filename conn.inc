@@ -1,7 +1,7 @@
 <?php 
 try 
 {
-	$db = new PDO('sqlite:db/apb.db3');
+	$db = new PDO('sqlite:db/apb.sqlite');
 
 }
 catch ( PDOException $e )
