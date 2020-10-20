@@ -1,47 +1,38 @@
 
-<?php require 'conn.inc'; ?>
-<?php require 'apb_parse.inc'; ?>
+<?php require 'data-layer.php'; ?>
 
 <?php
-	$db = new PDO('sqlite:../db/apb.sqlite');
-	$sql = "SELECT page_body FROM apb_pages WHERE page_id ='" . $_GET["page_id"] . "'";
-	$row=$db->query($sql)->fetch();
-	
 
-	$str_PageBody=$row["page_body"];
-	
-	$ext=0;
-	while ($ext<>1)
-	{
-		$iStart = strripos($str_PageBody,"<apb>");
-		$iEnd = strripos($str_PageBody,"</apb>");
-		 
-		if ($iStart==0 && $iEnd==0) 
-		{
-			echo ($str_PageBody);
-			$ext=1;
-		}
-		else
-		{
-			//echo (mid(str_PageBody,1,iStart-1));
-			//str_APB_Command=trim((mid(str_PageBody,iStart + 5,iEnd-iStart-5)))
-			//parse (str_APB_Command)
-			//str_PageBody= mid(str_PageBody,iEnd + 6)
-		}
-	}
-	
+try {
 
-if (isset($_GET['debug']))	
-{
-  echo ("<br><br><br><br><br><br>");
-  echo ("<hr> <b>DEBUG INFO</b> <hr>");
-  echo ("ISTART: " . $iStart . "<br>");
-  echo ("IEND: " . $iEnd . "<br>");
-  echo ("i: " . $i . "<br>");
-  echo ("len: " . $iEnd - $iStart . "<br>");
-  echo ("parsed: " . $parsed);
-  echo ("<hr>");
-}  
+	//$db = new PDO('sqlite:../db/apb.sqlite');
+	$query = "SELECT page_body FROM apb_pages WHERE page_id ='" . $_GET["page_id"] . "'";
+	$stmt = $db->prepare($query);
+	$stmt->execute();
+
+	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$output = array('pagebody' => $result);
+
+	header('Content-Type: application/json');
+	print(json_encode($output));
+} 
+catch (PDOException $e) {
+	echo "Exception:" + $e->getMessage();
+}
+
+
+
+
+if (isset($_GET['debug'])) {
+	echo ("<br><br><br><br><br><br>");
+	echo ("<hr> <b>DEBUG INFO</b> <hr>");
+	echo ("ISTART: " . $iStart . "<br>");
+	echo ("IEND: " . $iEnd . "<br>");
+	echo ("i: " . $i . "<br>");
+	echo ("len: " . $iEnd - $iStart . "<br>");
+	echo ("parsed: " . $parsed);
+	echo ("<hr>");
+}
 
 
 ?>
