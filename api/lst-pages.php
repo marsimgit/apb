@@ -5,7 +5,7 @@
 <?php
 
 	try {
-	//$db = new PDO('sqlite:db/apb.sqlite');
+	//$db = new PDO('sqlite:../db/apb.sqlite');
 		
     $query = 'SELECT page_id,page_description FROM apb_pages ORDER BY page_id'; 
   	$stmt = $db->prepare( $query );

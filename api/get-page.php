@@ -3,7 +3,7 @@
 <?php require 'apb_parse.inc'; ?>
 
 <?php
-	$db = new PDO('sqlite:db/apb.db3');
+	$db = new PDO('sqlite:../db/apb.sqlite');
 	$sql = "SELECT page_body FROM apb_pages WHERE page_id ='" . $_GET["page_id"] . "'";
 	$row=$db->query($sql)->fetch();
 	

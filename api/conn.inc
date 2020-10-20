@@ -1,7 +1,7 @@
 <?php 
 try 
 {
-	$db = new PDO('sqlite:db/apb.sqlite');
+	$db = new PDO('sqlite:../db/apb.sqlite');
 
 }
 catch ( PDOException $e )
@@ -11,7 +11,7 @@ catch ( PDOException $e )
 
 function WebTextArea($sql,$id)
 {
-	$db = new PDO('sqlite:db/apb.db3');
+	$db = new PDO('sqlite:../db/apb.sqlite');
 	$row=$db->query($sql)->fetch();
 	
 	echo ("<TEXTAREA NAME=" . $id . " ROWS=20 COLS=80 >");
@@ -23,7 +23,7 @@ function WebTextArea($sql,$id)
 
 function WebInput($sql,$id)
 {
-	$db = new PDO('sqlite:db/apb.db3');
+	$db = new PDO('sqlite:../db/apb.sqlite');
 	$row=$db->query($sql)->fetch();
 
 	echo ("<INPUT TYPE=input NAME=" . $id . " size=50 value='" . $row[0] . "'>"); 
@@ -32,7 +32,7 @@ function WebInput($sql,$id)
 
 function WebSelectList($sql,$id)
 {
-	$db = new PDO('sqlite:db/apb.db3');
+	$db = new PDO('sqlite:../db/apb.sqlite');
 	$result=$db->query($sql);
 	
 	echo("<select name='" . $id . "' SIZE=10>");
@@ -46,7 +46,7 @@ function WebSelectList($sql,$id)
  
 function WebTable($sql)
 {
-	$db = new PDO('sqlite:db/apb.db3');
+	$db = new PDO('sqlite:../db/apb.sqlite');
 	$result=$db->query($sql);
 	
 	echo ("<table>");
@@ -76,7 +76,7 @@ function WebTable($sql)
 
 function WebSelectCombo($sql,$id)
 {
-	$db = new PDO('sqlite:db/apb.db3');
+	$db = new PDO('sqlite:../db/apb.sqlite');
 	$result=$db->query($sql);
 	
 	echo ("<SELECT NAME=" & id & ">");	
